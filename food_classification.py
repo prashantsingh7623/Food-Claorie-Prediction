@@ -37,8 +37,10 @@ import cv2
 
 
 """
-Visualize the data, showing one image per class from 101 classes
+This code just provides the visualisation of your food dataset by taking 
+pictures randomply
 """
+# Visualize the data, showing one image per class from 101 classes
 rows = 17
 cols = 6
 fig, ax = plt.subplots(rows, cols, figsize=(25,25))
@@ -65,10 +67,12 @@ plt.setp(ax, xticks=[],yticks=[])
 plt.tight_layout()
             
 
+
 """
-splitting the data into train and test set
-Helper method to split dataset into train and test folders
+splitting the data into train and test set and then putting them
+into separate folders
 """
+# Helper method to split dataset into train and test folders
 def prepare_data(filepath, src,dest):
   classes_images = defaultdict(list)
   with open(filepath, 'r') as txt:
@@ -113,11 +117,7 @@ of architectural decisions different from that of binary classification,
 choosing 3 classes is a good start instead of 2
 
 """
-
-
-"""
-Helper method to create train_mini and test_mini data samples
-"""
+# Helper method to create train_mini and test_mini data samples
 def dataset_mini(food_list, src, dest):
   if os.path.exists(dest):
     rmtree(dest) # removing dataset_mini(if it already exists) folders so that we will have only the classes that we want
@@ -127,9 +127,7 @@ def dataset_mini(food_list, src, dest):
     copytree(os.path.join(src,food_item), os.path.join(dest,food_item))
     
     
-"""
-picking 3 food items and generating separate data folders for the same
-"""
+# picking 3 food items and generating separate data folders for the same
 food_list = []
 with open('meta/classes.txt') as file:
     for line in file:
@@ -228,9 +226,7 @@ class_map_3 = train_generator.class_indices
 class_map_3
 
 
-"""
-Visualize the accuracy and loss plots
-"""
+#Visualize the accuracy and loss plots
 def plot_accuracy(history,title):
     plt.title(title)
     plt.plot(history.history['acc'])
@@ -260,33 +256,26 @@ Using dropout can lead to a higher validation accuracy
 Predicting classes for new images from internet using the best trained model
 """
 
-
-"""
-Make a list of downloaded images and test the trained model
-
-"""
+# Make a list of downloaded images and test the trained model
 images = []
 
-#images.append('apple_pie.jpg')
-images.append('p.png')
-images.append('125.jpg')
-images.append('s.png')
+#append the images here
+images.append('pizza.jpg')
+images.append('omelete.jpg')
 
 
 """
-making list of static calories and adding into calories.txt file.
+making calories.txt file to fetch the calories from calories.txt file
+the calories are statically added 
 """
 d = {}
 with open('calories.txt') as file:
     for line in file:
         key, val = line.split()
         d[key] = val
-        
 
 
-"""
-Loading the best saved model to make predictions
-"""
+# Loading the best saved model to make predictions
 K.clear_session()
 model_best = load_model('best_model_3class.hdf5',compile = False)
 
@@ -294,7 +283,6 @@ model_best = load_model('best_model_3class.hdf5',compile = False)
 """Setting compile=False and clearing the session leads to faster loading of the saved model
 Withouth the above addiitons, model loading was taking more than a minute!
 """
-
 def predict_class(model, images, show = True):
   for img in images:
     img = image.load_img(img, target_size=(299, 299))
@@ -313,8 +301,5 @@ def predict_class(model, images, show = True):
         plt.show()
 
 
-
-"""
-predicting the food category along with calories
-"""
+#predicting the food category along with calories
 predict_class(model_best, images, True)
