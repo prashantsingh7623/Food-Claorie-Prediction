@@ -1,0 +1,14 @@
+apple 0.52
+banana 0.89
+bread 3.15
+bun 2.23
+egg 1.43
+grape 0.69
+lemon 0.29
+litchi 0.66
+mango 0.6
+orange 0.63
+peach 0.57
+pear 0.39
+kiwi 0.61
+tomato 0.27
