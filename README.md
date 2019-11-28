@@ -6,3 +6,6 @@ Here we assumed that the ppi of smartphone approx 400.
 After finding the volume of food(apple in our case) we'll find the mass using mass volume relationship.
 Here we assumed that the density of food(apple in our case) will be 0.5. 
 Now we can find the desired calories of the food(apple in our case).
+
+Referances -
+G. Vivek Venkatesh, S. Md. Iqbal, A. Gopal & D. Ganesan (2015) Estimation of Volume and Mass of Axi-Symmetric Fruits Using Image Processing Technique, International Journal of Food Properties, 18:3, 608-626, DOI: 10.1080/10942912.2013.831444
